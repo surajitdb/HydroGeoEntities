@@ -34,6 +34,7 @@ public class Pipe extends HydroGeoEntity {
     private Double discharge;
     private Double slope;
     private Double diameter;
+    private Double fillCoefficient;
 
     public Pipe(final Coordinate2D startPoint, final Coordinate2D endPoint, final Double roughness) {
 
