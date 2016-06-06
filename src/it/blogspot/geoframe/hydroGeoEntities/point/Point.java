@@ -20,27 +20,25 @@ package it.blogspot.geoframe.hydroGeoEntities.point;
 
 import org.geotools.graph.util.geom.Coordinate2D;
 
-import net.jcip.annotations.Immutable;
+import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 
-@Immutable
-public class Hydrometer extends Point {
+public abstract class Point extends HydroGeoEntity {
 
-    private final Coordinate2D point;
-    private final double elevation;
-
-    public Hydrometer(final Coordinate2D point, final double elevation) {
-        this.point = point;
-        this.elevation = elevation;
+    public Coordinate2D getStartPoint() {
+        return getPoint();
     }
 
-    @Override
-    public double getElevation() {
-        return elevation;
+    public Coordinate2D getEndPoint() {
+        return getPoint();
     }
 
-    @Override
-    public Coordinate2D getPoint() {
-        return point;
+    public void setElevation(final double elevation) {
+        String message = "Operation not permetted";
+        throw new UnsupportedOperationException(message); 
     }
+
+    public abstract Coordinate2D getPoint();
+
+    public abstract double getElevation();
 
 }

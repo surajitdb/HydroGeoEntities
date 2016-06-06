@@ -18,30 +18,41 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.line;
 
+import java.util.HashMap;
+
 import org.geotools.graph.util.geom.Coordinate2D;
 
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
+import it.blogspot.geoframe.hydroGeoEntities.point.Point;
+import it.blogspot.geoframe.utils.GEOchecks;
 import it.blogspot.geoframe.utils.UnitsTransform;
 
 public class Pipe extends HydroGeoEntity {
 
-    final private Coordinate2D startPoint;
-    final private Coordinate2D endPoint;
-    final private Double roughness;
-    private Double elevationStartPoint;
-    private Double elevationEndPoint;
-    private Double length;
-    private Double discharge;
-    private Double slope;
-    private Double diameter;
-    private Double fillCoefficient;
+    final private HashMap<Integer, Point> inspectionChambers = new HashMap<Integer, Point>();
+    final private Point startInspectionChamber;
+    final private Point endInspectionChamber;
+    final private double roughness;
+    final private double fillCoefficient;
+    private Double length = null;
+    private Double discharge = null;
+    private Double slope = null;
+    private Double diameter = null;
 
-    public Pipe(final Coordinate2D startPoint, final Coordinate2D endPoint, final Double roughness) {
+    public Pipe(final double roughness, final double fillCoefficient, Point... inspectionChambers) {
 
-        this.startPoint = startPoint;
-        this.endPoint = endPoint;
         this.roughness = roughness;
+        this.fillCoefficient = fillCoefficient;
 
+        // check if inspectionChambers length is at least 2
+        Integer index = 1;
+        for (Point inspectionChamber : inspectionChambers) {
+            this.inspectionChambers.put(index, inspectionChamber);
+            index++;
+        }
+
+        this.startInspectionChamber = this.inspectionChambers.get(1);
+        this.endInspectionChamber = this.inspectionChambers.get(this.inspectionChambers.size());
     }
 
     private Double computeLength() {
@@ -50,26 +61,28 @@ public class Pipe extends HydroGeoEntity {
     }
 
     private Double horizontalProjection() {
-        return Math.sqrt(Math.pow(startPoint.x - endPoint.x, 2) +
-                         Math.pow(startPoint.y - endPoint.y, 2));
+        return Math.sqrt(Math.pow(startInspectionChamber.getPoint().x -
+                                  endInspectionChamber.getPoint().x, 2) +
+                         Math.pow(startInspectionChamber.getPoint().y -
+                                  endInspectionChamber.getPoint().y, 2));
     }
 
     private Double altitudeDifference() {
-        return elevationStartPoint - elevationEndPoint;
+        return startInspectionChamber.getElevation() - endInspectionChamber.getElevation();
     }
 
-    private Double altitudeDifference(final Double slopeRad) {
+    private Double altitudeDifference(final double slopeRad) {
         return horizontalProjection() * Math.tan(slopeRad);
     }
 
     @Override
     public Coordinate2D getStartPoint() {
-        return startPoint;
+        return startInspectionChamber.getPoint();
     }
 
     @Override
     public Coordinate2D getEndPoint() {
-        return endPoint;
+        return endInspectionChamber.getPoint();
     }
 
     @Override
@@ -80,18 +93,56 @@ public class Pipe extends HydroGeoEntity {
 
     }
 
-    public void setElevationEndPoint(final Double elevationEndPoint) {
-        this.elevationEndPoint = elevationEndPoint;
-        if (this.length == null) this.length = computeLength();
+    public double getLength() {
+        return GEOchecks.checkVariable(length);
     }
 
-    public void setSlope(final Double slope) {
+    public double getDischarge() {
+        return GEOchecks.checkVariable(discharge);
+    }
+
+    public double getSlope() {
+        return GEOchecks.checkVariable(slope);
+    }
+
+    public double getDiameter() {
+        return GEOchecks.checkVariable(diameter);
+    }
+
+    public double getRoughness() {
+        return roughness;
+    }
+
+    public double getFillCoefficient() {
+        return fillCoefficient;
+    }
+
+    public void setElevationEndPoint(final double elevationEndPoint) {
+        endInspectionChamber.setElevation(elevationEndPoint);
+        inspectionChambers.put(inspectionChambers.size(), endInspectionChamber);
+
+        if (length == 0.0) length = computeLength();
+    }
+
+    public void setLength(final double length) {
+        this.length = length;
+    }
+
+    public void setDischarge(final double discharge) {
+        this.discharge = discharge;
+    }
+
+    public void setSlope(final double slope) {
         this.slope = slope;
-        this.elevationEndPoint = computeElevationEndPoint(slope);
+        setElevationEndPoint(computeElevationEndPoint(slope));
     }
 
-    private Double computeElevationEndPoint(final Double slope) {
-        return elevationStartPoint - altitudeDifference(UnitsTransform.percentage2radiant(slope));
+    public void setDiameter(final double diameter) {
+        this.diameter = diameter;
+    }
+
+    private double computeElevationEndPoint(final double slope) {
+        return startInspectionChamber.getElevation() - altitudeDifference(UnitsTransform.percentage2radiant(slope));
     }
 
 }
