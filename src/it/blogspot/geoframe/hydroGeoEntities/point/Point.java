@@ -22,6 +22,14 @@ import org.geotools.graph.util.geom.Coordinate2D;
 
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 
+/**
+ *
+ *
+ * @author sidereus, francesco.serafin.3@gmail.com
+ * @version 0.1
+ * @date May 15, 2016
+ * @copyright GNU Public License v3 GWH-2b4
+ */
 public abstract class Point extends HydroGeoEntity {
 
     public Coordinate2D getStartPoint() {

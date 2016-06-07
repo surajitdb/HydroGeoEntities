@@ -27,6 +27,14 @@ import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 import it.blogspot.geoframe.utils.GEOchecks;
 import it.blogspot.geoframe.utils.UnitsTransform;
 
+/**
+ *
+ *
+ * @author sidereus, francesco.serafin.3@gmail.com
+ * @version 0.1
+ * @date May 15, 2016
+ * @copyright GNU Public License v3 GWH-2b4
+ */
 public class Pipe extends HydroGeoEntity {
 
     final private HashMap<Integer, Point> inspectionChambers = new HashMap<Integer, Point>();
