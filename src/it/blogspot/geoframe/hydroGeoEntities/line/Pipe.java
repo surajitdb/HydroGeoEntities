@@ -32,16 +32,16 @@ public class Pipe extends HydroGeoEntity {
     final private HashMap<Integer, Point> inspectionChambers = new HashMap<Integer, Point>();
     final private Point startInspectionChamber;
     final private Point endInspectionChamber;
-    final private double roughness;
+    final private double gaucklerStricklerCoefficient;
     final private double fillCoefficient;
     private Double length = null;
     private Double discharge = null;
     private Double slope = null;
     private Double diameter = null;
 
-    public Pipe(final double roughness, final double fillCoefficient, Point... inspectionChambers) {
+    public Pipe(final double gaucklerStricklerCoefficient, final double fillCoefficient, Point... inspectionChambers) {
 
-        this.roughness = roughness;
+        this.gaucklerStricklerCoefficient = gaucklerStricklerCoefficient;
         this.fillCoefficient = fillCoefficient;
 
         // check if inspectionChambers length is at least 2
@@ -109,8 +109,8 @@ public class Pipe extends HydroGeoEntity {
         return GEOchecks.checkVariable(diameter);
     }
 
-    public double getRoughness() {
-        return roughness;
+    public double getGaucklerStricklerCoefficient() {
+        return gaucklerStricklerCoefficient;
     }
 
     public double getFillCoefficient() {
