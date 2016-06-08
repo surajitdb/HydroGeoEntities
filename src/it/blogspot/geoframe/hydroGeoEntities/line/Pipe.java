@@ -25,7 +25,6 @@ import org.geotools.graph.util.geom.Coordinate2D;
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 import it.blogspot.geoframe.utils.GEOchecks;
-import it.blogspot.geoframe.utils.GEOunitsTransform;
 
 /**
  *
@@ -79,10 +78,6 @@ public class Pipe extends HydroGeoEntity {
         return startInspectionChamber.getElevation() - endInspectionChamber.getElevation();
     }
 
-    private Double altitudeDifference(final double slopeRad) {
-        return horizontalProjection() * Math.tan(slopeRad);
-    }
-
     @Override
     public Coordinate2D getStartPoint() {
         return startInspectionChamber.getPoint();
@@ -132,17 +127,20 @@ public class Pipe extends HydroGeoEntity {
         if (length == 0.0) length = computeLength();
     }
 
-    public void setLength(final double length) {
-        this.length = length;
+    public void buildPipe(final double elevationEndPoint, final double diameter, final double fillCoefficient) {
+        setElevationEndPoint(elevationEndPoint);
+        this.diameter = diameter;
+        this.fillCoefficient = fillCoefficient;
+
+        computeSlope();
     }
 
     public void setDischarge(final double discharge) {
         this.discharge = discharge;
     }
 
-    public void setSlope(final double slope) {
-        this.slope = slope;
-        setElevationEndPoint(computeElevationEndPoint(slope));
+    private void computeSlope() {
+        this.slope = altitudeDifference() / horizontalProjection();
     }
 
     public void setDiameter(final double diameter) {
@@ -151,10 +149,6 @@ public class Pipe extends HydroGeoEntity {
 
     public void setFillCoefficient(final double fillCoefficient) {
         this.fillCoefficient = fillCoefficient;
-    }
-
-    private double computeElevationEndPoint(final double slope) {
-        return startInspectionChamber.getElevation() - altitudeDifference(GEOunitsTransform.percentage2radiant(slope));
     }
 
 }
