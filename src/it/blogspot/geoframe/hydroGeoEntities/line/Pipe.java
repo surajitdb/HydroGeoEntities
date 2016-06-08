@@ -41,7 +41,7 @@ public class Pipe extends HydroGeoEntity {
     final private Point startInspectionChamber;
     final private Point endInspectionChamber;
     final private double gaucklerStricklerCoefficient;
-    final private double fillCoefficient;
+    private double fillCoefficient;
     private Double length = null;
     private Double discharge = null;
     private Double slope = null;
@@ -147,6 +147,10 @@ public class Pipe extends HydroGeoEntity {
 
     public void setDiameter(final double diameter) {
         this.diameter = diameter;
+    }
+
+    public void setFillCoefficient(final double fillCoefficient) {
+        this.fillCoefficient = fillCoefficient;
     }
 
     private double computeElevationEndPoint(final double slope) {
