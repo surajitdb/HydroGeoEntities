@@ -25,7 +25,7 @@ import org.geotools.graph.util.geom.Coordinate2D;
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 import it.blogspot.geoframe.utils.GEOchecks;
-import it.blogspot.geoframe.utils.UnitsTransform;
+import it.blogspot.geoframe.utils.GEOunitsTransform;
 
 /**
  *
@@ -150,7 +150,7 @@ public class Pipe extends HydroGeoEntity {
     }
 
     private double computeElevationEndPoint(final double slope) {
-        return startInspectionChamber.getElevation() - altitudeDifference(UnitsTransform.percentage2radiant(slope));
+        return startInspectionChamber.getElevation() - altitudeDifference(GEOunitsTransform.percentage2radiant(slope));
     }
 
 }
