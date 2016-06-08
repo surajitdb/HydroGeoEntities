@@ -41,7 +41,7 @@ public class Pipe extends HydroGeoEntity {
     final private Point startInspectionChamber;
     final private Point endInspectionChamber;
     final private double gaucklerStricklerCoefficient;
-    private double fillCoefficient;
+    private Double fillCoefficient;
     private Double length = null;
     private Double discharge = null;
     private Double slope = null;
