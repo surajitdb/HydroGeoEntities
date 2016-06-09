@@ -74,6 +74,10 @@ public class DrainageArea extends HydroGeoArea {
         return area;
     }
 
+    public Pipe getPipe() {
+        return pipe;
+    }
+
     @Override
     public Coordinate2D getStartPoint() {
         return pipe.getStartPoint();
@@ -88,6 +92,10 @@ public class DrainageArea extends HydroGeoArea {
     public Coordinate2D getPoint() {
         // implement the computing of the centroid
         return super.getPoint();
+    }
+
+    public void setPipe(final Pipe pipe) {
+        this.pipe = pipe;
     }
 
 }
