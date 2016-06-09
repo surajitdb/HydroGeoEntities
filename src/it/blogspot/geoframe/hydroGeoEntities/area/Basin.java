@@ -20,7 +20,6 @@ package it.blogspot.geoframe.hydroGeoEntities.area;
 
 import org.geotools.graph.util.geom.Coordinate2D;
 
-import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 import it.blogspot.geoframe.hydroGeoEntities.line.River;
 
 import net.jcip.annotations.Immutable;
@@ -34,7 +33,7 @@ import net.jcip.annotations.Immutable;
  * @copyright GNU Public License v3 GWH-2b4
  */
 @Immutable
-public class Basin extends HydroGeoEntity {
+public class Basin extends HydroGeoArea {
 
     final private River river;
     final private Double area;
@@ -46,7 +45,7 @@ public class Basin extends HydroGeoEntity {
 
     }
 
-    public Double getBasinArea() {
+    public Double getArea() {
         return area;
     }
 
