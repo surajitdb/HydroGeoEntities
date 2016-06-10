@@ -87,6 +87,10 @@ public class DrainageArea extends HydroGeoArea {
         return pipe.getEndPoint();
     }
 
+    public double getUrbanRunoffCoefficient() {
+        return urbanRunoffCoefficient;
+    }
+
     public void setPipe(final Pipe pipe) {
         this.pipe = pipe;
     }
