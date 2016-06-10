@@ -130,4 +130,8 @@ public class Pipe extends HydroGeoEntity {
         this.fillCoefficient = fillCoefficient;
     }
 
+    public void setVelocity(final double velocity) {
+        this.velocity = velocity;
+    }
+
 }
