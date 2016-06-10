@@ -18,8 +18,6 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.point;
 
-import org.geotools.graph.util.geom.Coordinate2D;
-
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 
 /**
@@ -32,21 +30,25 @@ import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
  */
 public abstract class Point extends HydroGeoEntity {
 
-    public Coordinate2D getStartPoint() {
-        return getPoint();
-    }
+    private String message = "Operation not permitted";
 
-    public Coordinate2D getEndPoint() {
-        return getPoint();
-    }
+    abstract public double getX();
+
+    abstract public double getY();
 
     public void setElevation(final double elevation) {
-        String message = "Operation not permetted";
+        String message = "Operation not permitted";
         throw new UnsupportedOperationException(message); 
     }
 
-    public abstract Coordinate2D getPoint();
+    abstract public double getElevation();
 
-    public abstract double getElevation();
+    public Point getStartPoint() {
+        throw new UnsupportedOperationException(message);
+    }
+
+    public Point getEndPoint() {
+        throw new UnsupportedOperationException(message);
+    }
 
 }

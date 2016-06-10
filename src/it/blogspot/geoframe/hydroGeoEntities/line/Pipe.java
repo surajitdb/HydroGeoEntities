@@ -20,8 +20,6 @@ package it.blogspot.geoframe.hydroGeoEntities.line;
 
 import java.util.HashMap;
 
-import org.geotools.graph.util.geom.Coordinate2D;
-
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 import it.blogspot.geoframe.utils.GEOchecks;
@@ -65,21 +63,13 @@ public class Pipe extends HydroGeoEntity {
     }
 
     @Override
-    public Coordinate2D getStartPoint() {
-        return startInspectionChamber.getPoint();
+    public Point getStartPoint() {
+        return startInspectionChamber;
     }
 
     @Override
-    public Coordinate2D getEndPoint() {
-        return endInspectionChamber.getPoint();
-    }
-
-    @Override
-    public Coordinate2D getPoint() {
-
-        // eventually return the middle of the pipe
-        return super.getPoint();
-
+    public Point getEndPoint() {
+        return endInspectionChamber;
     }
 
     public double getLength() {
@@ -114,8 +104,8 @@ public class Pipe extends HydroGeoEntity {
         endInspectionChamber.setElevation(elevationEndPoint);
         inspectionChambers.put(inspectionChambers.size(), endInspectionChamber);
 
-        length = GEOgeometry.computeLength3D(this.getStartPoint().x, this.getStartPoint().y,startInspectionChamber.getElevation(),
-                                             this.getEndPoint().x, this.getEndPoint().y, endInspectionChamber.getElevation());
+        length = GEOgeometry.computeLength3D(startInspectionChamber.getX(), startInspectionChamber.getY(), startInspectionChamber.getElevation(),
+                                             endInspectionChamber.getX(), endInspectionChamber.getY(), endInspectionChamber.getElevation());
     }
 
     public void buildPipe(final double elevationEndPoint, final double diameter, final double fillCoefficient, final double velocity) {
@@ -124,8 +114,8 @@ public class Pipe extends HydroGeoEntity {
         this.fillCoefficient = fillCoefficient;
         this.velocity = velocity;
 
-        slope = GEOgeometry.computeSlope(this.getStartPoint().x, this.getStartPoint().y, startInspectionChamber.getElevation(),
-                                         this.getEndPoint().x, this.getStartPoint().y, endInspectionChamber.getElevation());
+        slope = GEOgeometry.computeSlope(startInspectionChamber.getX(), startInspectionChamber.getY(), startInspectionChamber.getElevation(),
+                                         endInspectionChamber.getX(), endInspectionChamber.getY(), endInspectionChamber.getElevation());
     }
 
     public void setDischarge(final double discharge) {

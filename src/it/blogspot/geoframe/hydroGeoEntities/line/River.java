@@ -18,9 +18,9 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.line;
 
-import org.geotools.graph.util.geom.Coordinate2D;
-
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
+import it.blogspot.geoframe.hydroGeoEntities.point.Point;
+
 import net.jcip.annotations.Immutable;
 
 /**
@@ -34,10 +34,10 @@ import net.jcip.annotations.Immutable;
 @Immutable
 public class River extends HydroGeoEntity {
 
-    final private Coordinate2D startPoint;
-    final private Coordinate2D endPoint;
+    final private Point startPoint;
+    final private Point endPoint;
 
-    public River(final Coordinate2D startPoint, final Coordinate2D endPoint) {
+    public River(final Point startPoint, final Point endPoint) {
 
         this.startPoint = startPoint;
         this.endPoint = endPoint;
@@ -45,21 +45,13 @@ public class River extends HydroGeoEntity {
     }
 
     @Override
-    public Coordinate2D getStartPoint() {
+    public Point getStartPoint() {
         return startPoint;
     }
 
     @Override
-    public Coordinate2D getEndPoint() {
+    public Point getEndPoint() {
         return endPoint;
-    }
-
-    @Override
-    public Coordinate2D getPoint() {
-
-        // eventually returning the middle of a polyline
-        return super.getPoint();
-
     }
 
 }

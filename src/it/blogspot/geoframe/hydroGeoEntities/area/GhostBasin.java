@@ -18,9 +18,8 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.area;
 
-import org.geotools.graph.util.geom.Coordinate2D;
+import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 
-import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 import net.jcip.annotations.Immutable;
 
 /**
@@ -32,38 +31,31 @@ import net.jcip.annotations.Immutable;
  * @copyright GNU Public License v3 GWH-2b4
  */
 @Immutable
-public class GhostBasin extends HydroGeoEntity {
+public class GhostBasin extends HydroGeoArea {
 
-    final private Coordinate2D startPoint;
-    final private Coordinate2D endPoint;
+    final private Point startPoint;
+    final private Point endPoint;
 
-    public GhostBasin (final Coordinate2D startPoint, final Coordinate2D endPoint) {
+    public GhostBasin (final Point startPoint, final Point endPoint) {
 
         this.startPoint = startPoint;
         this.endPoint = endPoint;
 
     }
 
-    public Double getBasinArea() {
+    @Override
+    public Double getArea() {
         return null;
     }
 
     @Override
-    public Coordinate2D getStartPoint() {
+    public Point getStartPoint() {
         return startPoint;
     }
 
     @Override
-    public Coordinate2D getEndPoint() {
+    public Point getEndPoint() {
         return endPoint;
-    }
-
-    @Override
-    public Coordinate2D getPoint() {
-
-        // implement the computing of the centroid
-        return super.getPoint();
-
     }
 
 }

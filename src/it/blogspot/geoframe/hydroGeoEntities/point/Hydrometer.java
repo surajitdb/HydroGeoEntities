@@ -47,8 +47,13 @@ public class Hydrometer extends Point {
     }
 
     @Override
-    public Coordinate2D getPoint() {
-        return point;
+    public double getX() {
+        return point.x;
+    }
+
+    @Override
+    public double getY() {
+        return point.y;
     }
 
 }

@@ -31,16 +31,23 @@ import org.geotools.graph.util.geom.Coordinate2D;
 public class InspectionChamber extends Point {
 
     final private Coordinate2D coordinate;
+    final public double terrainElevation;
     private double elevation;
 
-    public InspectionChamber(final double x, final double y, final double z) {
+    public InspectionChamber(final double x, final double y, final double z, final double terrainElevation) {
         this.coordinate = new Coordinate2D(x, y);
         this.elevation = z;
+        this.terrainElevation = terrainElevation;
     }
 
     @Override
-    public Coordinate2D getPoint() {
-        return coordinate;
+    public double getX() {
+        return coordinate.x;
+    }
+
+    @Override
+    public double getY() {
+        return coordinate.y;
     }
 
     @Override

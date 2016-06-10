@@ -18,7 +18,7 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities;
 
-import org.geotools.graph.util.geom.Coordinate2D;
+import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 
 /**
  *
@@ -30,15 +30,8 @@ import org.geotools.graph.util.geom.Coordinate2D;
  */
 public abstract class HydroGeoEntity {
 
-    abstract public Coordinate2D getStartPoint();
+    abstract public Point getStartPoint();
 
-    abstract public Coordinate2D getEndPoint();
-
-    public Coordinate2D getPoint() {
-
-        String tmp = "Method not implemented yet";
-        throw new UnsupportedOperationException(tmp);
-
-    }
+    abstract public Point getEndPoint();
 
 }

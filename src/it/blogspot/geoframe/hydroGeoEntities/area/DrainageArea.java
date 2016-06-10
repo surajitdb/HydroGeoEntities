@@ -18,9 +18,8 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.area;
 
-import org.geotools.graph.util.geom.Coordinate2D;
-
 import it.blogspot.geoframe.hydroGeoEntities.line.Pipe;
+import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 import it.blogspot.geoframe.utils.GEOunitsTransform;
 
 /**
@@ -79,19 +78,13 @@ public class DrainageArea extends HydroGeoArea {
     }
 
     @Override
-    public Coordinate2D getStartPoint() {
+    public Point getStartPoint() {
         return pipe.getStartPoint();
     }
 
     @Override
-    public Coordinate2D getEndPoint() {
+    public Point getEndPoint() {
         return pipe.getEndPoint();
-    }
-
-    @Override
-    public Coordinate2D getPoint() {
-        // implement the computing of the centroid
-        return super.getPoint();
     }
 
     public void setPipe(final Pipe pipe) {

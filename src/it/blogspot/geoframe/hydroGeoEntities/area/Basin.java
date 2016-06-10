@@ -18,9 +18,8 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.area;
 
-import org.geotools.graph.util.geom.Coordinate2D;
-
 import it.blogspot.geoframe.hydroGeoEntities.line.River;
+import it.blogspot.geoframe.hydroGeoEntities.point.Point;
 
 import net.jcip.annotations.Immutable;
 
@@ -50,21 +49,13 @@ public class Basin extends HydroGeoArea {
     }
 
     @Override
-    public Coordinate2D getStartPoint() {
+    public Point getStartPoint() {
         return river.getStartPoint();
     }
 
     @Override
-    public Coordinate2D getEndPoint() {
+    public Point getEndPoint() {
         return river.getEndPoint();
-    }
-
-    @Override
-    public Coordinate2D getPoint() {
-
-        // implement the computing of the centroid
-        return super.getPoint();
-
     }
 
 }
