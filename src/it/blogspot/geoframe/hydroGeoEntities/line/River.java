@@ -18,8 +18,7 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.line;
 
-import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
-import it.blogspot.geoframe.hydroGeoEntities.point.Point;
+import it.blogspot.geoframe.hydroGeoEntities.point.HydroGeoPoint;
 
 import net.jcip.annotations.Immutable;
 
@@ -32,12 +31,13 @@ import net.jcip.annotations.Immutable;
  * @copyright GNU Public License v3 GWH-2b4
  */
 @Immutable
-public class River extends HydroGeoEntity {
+public class River extends HydroGeoLine {
 
-    final private Point startPoint;
-    final private Point endPoint;
+    final private HydroGeoPoint startPoint;
+    final private HydroGeoPoint endPoint;
+    final private String message = "Nothing implemented yet";
 
-    public River(final Point startPoint, final Point endPoint) {
+    public River(final HydroGeoPoint startPoint, final HydroGeoPoint endPoint) {
 
         this.startPoint = startPoint;
         this.endPoint = endPoint;
@@ -45,13 +45,38 @@ public class River extends HydroGeoEntity {
     }
 
     @Override
-    public Point getStartPoint() {
+    public HydroGeoPoint getStartPoint() {
         return startPoint;
     }
 
     @Override
-    public Point getEndPoint() {
+    public HydroGeoPoint getEndPoint() {
         return endPoint;
+    }
+
+    @Override
+    public double getLength() {
+        throw new UnsupportedOperationException(message);
+    }
+
+    @Override
+    public double getDischarge() {
+        throw new UnsupportedOperationException(message);
+    }
+
+    @Override
+    public double getSlope() {
+        throw new UnsupportedOperationException(message);
+    }
+
+    @Override
+    public double getVelocity() {
+        throw new UnsupportedOperationException(message);
+    }
+
+    @Override
+    public double getGaucklerStricklerCoefficient() {
+        throw new UnsupportedOperationException(message);
     }
 
 }

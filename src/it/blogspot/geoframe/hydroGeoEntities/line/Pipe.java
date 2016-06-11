@@ -20,8 +20,7 @@ package it.blogspot.geoframe.hydroGeoEntities.line;
 
 import java.util.HashMap;
 
-import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
-import it.blogspot.geoframe.hydroGeoEntities.point.Point;
+import it.blogspot.geoframe.hydroGeoEntities.point.HydroGeoPoint;
 import it.blogspot.geoframe.utils.GEOchecks;
 import it.blogspot.geoframe.utils.GEOgeometry;
 
@@ -33,11 +32,11 @@ import it.blogspot.geoframe.utils.GEOgeometry;
  * @date May 15, 2016
  * @copyright GNU Public License v3 GWH-2b4
  */
-public class Pipe extends HydroGeoEntity {
+public class Pipe extends HydroGeoLine {
 
-    final private HashMap<Integer, Point> inspectionChambers = new HashMap<Integer, Point>();
-    final private Point startInspectionChamber;
-    final private Point endInspectionChamber;
+    final private HashMap<Integer, HydroGeoPoint> inspectionChambers = new HashMap<Integer, HydroGeoPoint>();
+    final private HydroGeoPoint startInspectionChamber;
+    final private HydroGeoPoint endInspectionChamber;
     final private double gaucklerStricklerCoefficient;
     private Double fillCoefficient;
     private Double length = null;
@@ -46,14 +45,14 @@ public class Pipe extends HydroGeoEntity {
     private Double diameter = null;
     private Double velocity = null;
 
-    public Pipe(final double gaucklerStricklerCoefficient, final double fillCoefficient, Point... inspectionChambers) {
+    public Pipe(final double gaucklerStricklerCoefficient, final double fillCoefficient, HydroGeoPoint... inspectionChambers) {
 
         this.gaucklerStricklerCoefficient = gaucklerStricklerCoefficient;
         this.fillCoefficient = fillCoefficient;
 
         // check if inspectionChambers length is at least 2
         Integer index = 1;
-        for (Point inspectionChamber : inspectionChambers) {
+        for (HydroGeoPoint inspectionChamber : inspectionChambers) {
             this.inspectionChambers.put(index, inspectionChamber);
             index++;
         }
@@ -63,23 +62,26 @@ public class Pipe extends HydroGeoEntity {
     }
 
     @Override
-    public Point getStartPoint() {
+    public HydroGeoPoint getStartPoint() {
         return startInspectionChamber;
     }
 
     @Override
-    public Point getEndPoint() {
+    public HydroGeoPoint getEndPoint() {
         return endInspectionChamber;
     }
 
+    @Override
     public double getLength() {
         return GEOchecks.checkVariable(length);
     }
 
+    @Override
     public double getDischarge() {
         return GEOchecks.checkVariable(discharge);
     }
 
+    @Override
     public double getSlope() {
         return GEOchecks.checkVariable(slope);
     }
@@ -88,6 +90,7 @@ public class Pipe extends HydroGeoEntity {
         return GEOchecks.checkVariable(diameter);
     }
 
+    @Override
     public double getGaucklerStricklerCoefficient() {
         return gaucklerStricklerCoefficient;
     }
@@ -96,6 +99,7 @@ public class Pipe extends HydroGeoEntity {
         return fillCoefficient;
     }
 
+    @Override
     public double getVelocity() {
         return velocity;
     }

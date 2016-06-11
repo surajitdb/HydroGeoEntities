@@ -28,7 +28,7 @@ import org.geotools.graph.util.geom.Coordinate2D;
  * @date May 15, 2016
  * @copyright GNU Public License v3 GWH-2b4
  */
-public class InspectionChamber extends Point {
+public class InspectionChamber extends HydroGeoPoint {
 
     final private Coordinate2D coordinate;
     final public double terrainElevation;

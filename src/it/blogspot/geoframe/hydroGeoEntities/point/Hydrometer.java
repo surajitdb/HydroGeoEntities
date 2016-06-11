@@ -31,7 +31,7 @@ import net.jcip.annotations.Immutable;
  * @copyright GNU Public License v3 GWH-2b4
  */
 @Immutable
-public class Hydrometer extends Point {
+public class Hydrometer extends HydroGeoPoint {
 
     private final Coordinate2D point;
     private final double elevation;

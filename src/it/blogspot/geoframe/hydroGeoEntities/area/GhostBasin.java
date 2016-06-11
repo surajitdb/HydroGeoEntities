@@ -18,7 +18,7 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities.area;
 
-import it.blogspot.geoframe.hydroGeoEntities.point.Point;
+import it.blogspot.geoframe.hydroGeoEntities.point.HydroGeoPoint;
 
 import net.jcip.annotations.Immutable;
 
@@ -33,10 +33,10 @@ import net.jcip.annotations.Immutable;
 @Immutable
 public class GhostBasin extends HydroGeoArea {
 
-    final private Point startPoint;
-    final private Point endPoint;
+    final private HydroGeoPoint startPoint;
+    final private HydroGeoPoint endPoint;
 
-    public GhostBasin (final Point startPoint, final Point endPoint) {
+    public GhostBasin (final HydroGeoPoint startPoint, final HydroGeoPoint endPoint) {
 
         this.startPoint = startPoint;
         this.endPoint = endPoint;
@@ -49,12 +49,12 @@ public class GhostBasin extends HydroGeoArea {
     }
 
     @Override
-    public Point getStartPoint() {
+    public HydroGeoPoint getStartPoint() {
         return startPoint;
     }
 
     @Override
-    public Point getEndPoint() {
+    public HydroGeoPoint getEndPoint() {
         return endPoint;
     }
 

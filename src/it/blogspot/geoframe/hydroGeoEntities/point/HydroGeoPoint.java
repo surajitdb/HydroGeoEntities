@@ -28,7 +28,7 @@ import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
  * @date May 15, 2016
  * @copyright GNU Public License v3 GWH-2b4
  */
-public abstract class Point extends HydroGeoEntity {
+public abstract class HydroGeoPoint extends HydroGeoEntity {
 
     private String message = "Operation not permitted";
 
@@ -43,11 +43,11 @@ public abstract class Point extends HydroGeoEntity {
 
     abstract public double getElevation();
 
-    public Point getStartPoint() {
+    public HydroGeoPoint getStartPoint() {
         throw new UnsupportedOperationException(message);
     }
 
-    public Point getEndPoint() {
+    public HydroGeoPoint getEndPoint() {
         throw new UnsupportedOperationException(message);
     }
 

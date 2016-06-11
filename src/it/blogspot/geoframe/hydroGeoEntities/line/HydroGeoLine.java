@@ -16,46 +16,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.blogspot.geoframe.hydroGeoEntities.area;
+package it.blogspot.geoframe.hydroGeoEntities.line;
 
-import it.blogspot.geoframe.hydroGeoEntities.line.River;
-import it.blogspot.geoframe.hydroGeoEntities.point.HydroGeoPoint;
-
-import net.jcip.annotations.Immutable;
+import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 
 /**
  *
  *
  * @author sidereus, francesco.serafin.3@gmail.com
  * @version 0.1
- * @date May 15, 2016
+ * @date June 16, 2016
  * @copyright GNU Public License v3 GWH-2b4
  */
-@Immutable
-public class Basin extends HydroGeoArea {
+public abstract class HydroGeoLine extends HydroGeoEntity {
 
-    final private River river;
-    final private Double area;
+    public abstract double getLength();
 
-    public Basin (final River river, final Double area) {
+    public abstract double getDischarge();
 
-        this.river = river;
-        this.area = area;
+    public abstract double getSlope();
 
-    }
+    public abstract double getVelocity();
 
-    public Double getArea() {
-        return area;
-    }
-
-    @Override
-    public HydroGeoPoint getStartPoint() {
-        return river.getStartPoint();
-    }
-
-    @Override
-    public HydroGeoPoint getEndPoint() {
-        return river.getEndPoint();
-    }
+    public abstract double getGaucklerStricklerCoefficient();
 
 }

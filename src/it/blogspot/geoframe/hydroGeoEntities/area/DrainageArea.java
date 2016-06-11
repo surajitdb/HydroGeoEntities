@@ -19,7 +19,7 @@
 package it.blogspot.geoframe.hydroGeoEntities.area;
 
 import it.blogspot.geoframe.hydroGeoEntities.line.Pipe;
-import it.blogspot.geoframe.hydroGeoEntities.point.Point;
+import it.blogspot.geoframe.hydroGeoEntities.point.HydroGeoPoint;
 import it.blogspot.geoframe.utils.GEOunitsTransform;
 
 /**
@@ -78,12 +78,12 @@ public class DrainageArea extends HydroGeoArea {
     }
 
     @Override
-    public Point getStartPoint() {
+    public HydroGeoPoint getStartPoint() {
         return pipe.getStartPoint();
     }
 
     @Override
-    public Point getEndPoint() {
+    public HydroGeoPoint getEndPoint() {
         return pipe.getEndPoint();
     }
 

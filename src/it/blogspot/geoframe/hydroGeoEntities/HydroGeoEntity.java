@@ -18,7 +18,7 @@
  */
 package it.blogspot.geoframe.hydroGeoEntities;
 
-import it.blogspot.geoframe.hydroGeoEntities.point.Point;
+import it.blogspot.geoframe.hydroGeoEntities.point.HydroGeoPoint;
 
 /**
  *
@@ -30,8 +30,8 @@ import it.blogspot.geoframe.hydroGeoEntities.point.Point;
  */
 public abstract class HydroGeoEntity {
 
-    abstract public Point getStartPoint();
+    abstract public HydroGeoPoint getStartPoint();
 
-    abstract public Point getEndPoint();
+    abstract public HydroGeoPoint getEndPoint();
 
 }
