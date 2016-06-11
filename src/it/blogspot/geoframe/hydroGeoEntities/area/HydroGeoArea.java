@@ -20,6 +20,14 @@ package it.blogspot.geoframe.hydroGeoEntities.area;
 
 import it.blogspot.geoframe.hydroGeoEntities.HydroGeoEntity;
 
+/**
+ *
+ *
+ * @author sidereus, francesco.serafin.3@gmail.com
+ * @version 0.1
+ * @date June 16, 2016
+ * @copyright GNU Public License v3 GWH-2b4
+ */
 public abstract class HydroGeoArea extends HydroGeoEntity {
 
     public abstract Double getArea();
