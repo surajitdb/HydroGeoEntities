@@ -44,6 +44,7 @@ public class Pipe extends HydroGeoLine {
     private Double slope = null;
     private Double diameter = null;
     private Double velocity = null;
+    private Double localDelayPickFlow = null;
 
     public Pipe(final double gaucklerStricklerCoefficient, final double fillCoefficient, HydroGeoPoint... inspectionChambers) {
 
@@ -104,6 +105,10 @@ public class Pipe extends HydroGeoLine {
         return velocity;
     }
 
+    public double getLocalDelayPickFlow() {
+        return localDelayPickFlow;
+    }
+
     public void setElevationEndPoint(final double elevationEndPoint) {
         endInspectionChamber.setElevation(elevationEndPoint);
         inspectionChambers.put(inspectionChambers.size(), endInspectionChamber);
@@ -120,6 +125,7 @@ public class Pipe extends HydroGeoLine {
 
         slope = GEOgeometry.computeSlope(startInspectionChamber.getX(), startInspectionChamber.getY(), startInspectionChamber.getElevation(),
                                          endInspectionChamber.getX(), endInspectionChamber.getY(), endInspectionChamber.getElevation());
+        localDelayPickFlow = computeLocalDelayPickFlow();
     }
 
     public void setDischarge(final double discharge) {
@@ -136,6 +142,10 @@ public class Pipe extends HydroGeoLine {
 
     public void setVelocity(final double velocity) {
         this.velocity = velocity;
+    }
+
+    private double computeLocalDelayPickFlow() {
+        return length / velocity;
     }
 
 }
