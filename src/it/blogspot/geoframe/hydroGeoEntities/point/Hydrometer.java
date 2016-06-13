@@ -47,6 +47,12 @@ public class Hydrometer extends HydroGeoPoint {
     }
 
     @Override
+    public double getTerrainElevation() {
+        String message = "Nothing implemented yet";
+        throw new UnsupportedOperationException(message);
+    }
+
+    @Override
     public double getX() {
         return point.x;
     }

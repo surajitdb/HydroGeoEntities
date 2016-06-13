@@ -36,6 +36,8 @@ public abstract class HydroGeoPoint extends HydroGeoEntity {
 
     abstract public double getY();
 
+    abstract public double getTerrainElevation();
+
     public void setElevation(final double elevation) {
         String message = "Operation not permitted";
         throw new UnsupportedOperationException(message); 

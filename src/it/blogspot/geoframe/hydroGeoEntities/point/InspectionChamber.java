@@ -55,6 +55,7 @@ public class InspectionChamber extends HydroGeoPoint {
         return elevation;
     }
 
+    @Override
     public double getTerrainElevation() {
         return terrainElevation;
     }
