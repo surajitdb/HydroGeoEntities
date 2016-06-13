@@ -40,6 +40,11 @@ public class InspectionChamber extends HydroGeoPoint {
         this.terrainElevation = terrainElevation;
     }
 
+    public InspectionChamber(final double x, final double y, final double terrainElevation) {
+        this.coordinate = new Coordinate2D(x, y);
+        this.terrainElevation = terrainElevation;
+    }
+
     @Override
     public double getX() {
         return coordinate.x;
