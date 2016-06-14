@@ -42,9 +42,9 @@ public class DrainageArea extends HydroGeoArea {
     final private Double EXPONENT2 = 0.4;
     final private Double EXPONENT3 = 0.2;
 
-    public DrainageArea (final Pipe pipe, final Double area,
-                         final Double urbanRunoffCoefficient,
-                         final Double alpha, final Double averageSlope) {
+    public DrainageArea (final Pipe pipe, final double area,
+                         final double urbanRunoffCoefficient,
+                         final double alpha, final double averageSlope) {
         this.pipe = pipe;
         this.area = area;
         this.urbanRunoffCoefficient = urbanRunoffCoefficient;
