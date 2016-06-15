@@ -60,6 +60,9 @@ public class Pipe extends HydroGeoLine {
 
         this.startInspectionChamber = this.inspectionChambers.get(1);
         this.endInspectionChamber = this.inspectionChambers.get(this.inspectionChambers.size());
+
+        length = GEOgeometry.computeLength2D(startInspectionChamber.getX(), startInspectionChamber.getY(),
+                                             endInspectionChamber.getX(), endInspectionChamber.getY());
     }
 
     @Override
