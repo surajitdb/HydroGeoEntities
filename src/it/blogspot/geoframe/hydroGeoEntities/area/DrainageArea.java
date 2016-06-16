@@ -36,8 +36,8 @@ public class DrainageArea extends HydroGeoArea {
     final private Double area;
     final private Double urbanRunoffCoefficient;
     final private Double alpha;
-    final private Double averageSlope;
-    final private Double residenceTime;
+    final private Double averageSlope; // [%]
+    final private Double residenceTime; // [min]
     final private Double EXPONENT1 = 0.3;
     final private Double EXPONENT2 = 0.4;
     final private Double EXPONENT3 = 0.2;
@@ -57,7 +57,7 @@ public class DrainageArea extends HydroGeoArea {
 
     private Double computeResidenceTime() {
         double numerator = GEOunitsTransform.hours2minutes(alpha) *
-                           Math.pow(GEOunitsTransform.meters2centimeters(area), EXPONENT1);
+                           Math.pow(GEOunitsTransform.centimeters2meters(area), EXPONENT1);
 
         double denominator = Math.pow(urbanRunoffCoefficient, EXPONENT2) *
                              Math.pow(averageSlope, EXPONENT3);
