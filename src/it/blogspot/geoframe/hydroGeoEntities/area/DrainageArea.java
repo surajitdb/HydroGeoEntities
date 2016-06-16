@@ -33,14 +33,13 @@ import it.blogspot.geoframe.utils.GEOunitsTransform;
 public class DrainageArea extends HydroGeoArea {
 
     private Pipe pipe;
-    final private Double area;
-    final private Double urbanRunoffCoefficient;
-    final private Double alpha;
+    final private Double area; // [ha]
+    final private Double urbanRunoffCoefficient; // [ha/ha]
     final private Double averageSlope; // [%]
     final private Double residenceTime; // [min]
-    final private Double EXPONENT1 = 0.3;
+    final private Double EXPONENT1 = 0.38;
     final private Double EXPONENT2 = 0.4;
-    final private Double EXPONENT3 = 0.2;
+    final private Double EXPONENT3 = 0.4;
 
     public DrainageArea (final Pipe pipe, final double area,
                          final double urbanRunoffCoefficient,
@@ -48,14 +47,19 @@ public class DrainageArea extends HydroGeoArea {
         this.pipe = pipe;
         this.area = area;
         this.urbanRunoffCoefficient = urbanRunoffCoefficient;
-        this.alpha = alpha;
         this.averageSlope = averageSlope;
 
-        this.residenceTime = computeResidenceTime();
+        this.residenceTime = computeResidenceTime(alpha);
 
     }
 
-    private Double computeResidenceTime() {
+    /**
+     * @TODO: HORRIBLE HACK. Unit conversion in computed numerator has no sense.
+     *        Further reasoning are required
+     *
+     * @return
+     */
+    private Double computeResidenceTime(final double alpha) {
         double numerator = GEOunitsTransform.hours2minutes(alpha) *
                            Math.pow(GEOunitsTransform.centimeters2meters(area), EXPONENT1);
 
