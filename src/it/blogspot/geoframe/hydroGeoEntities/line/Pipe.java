@@ -45,6 +45,7 @@ public class Pipe extends HydroGeoLine {
     private Double diameter = null;
     private Double velocity = null;
     private Double localDelayPickFlow = null;
+    private Double pickTime = null;
 
     public Pipe(final double gaucklerStricklerCoefficient, final double fillCoefficient, HydroGeoPoint... inspectionChambers) {
 
@@ -112,6 +113,11 @@ public class Pipe extends HydroGeoLine {
         return localDelayPickFlow;
     }
 
+    public double getPickTime() {
+        GEOchecks.isNull(pickTime); // postcondition
+        return pickTime;
+    }
+
     public void setElevationEndPoint(final double elevationEndPoint) {
         endInspectionChamber.setElevation(elevationEndPoint);
         inspectionChambers.put(inspectionChambers.size(), endInspectionChamber);
@@ -145,6 +151,11 @@ public class Pipe extends HydroGeoLine {
 
     public void setVelocity(final double velocity) {
         this.velocity = velocity;
+    }
+
+    public void setPickTime(final Double pickTime) {
+        GEOchecks.isNull(pickTime); // precondition
+        this.pickTime = pickTime;
     }
 
     private double computeLocalDelayPickFlow() {
