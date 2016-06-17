@@ -158,6 +158,11 @@ public class Pipe extends HydroGeoLine {
         this.peakTime = peakTime;
     }
 
+    /**
+     * @TODO: might be necessary to convert the velocity from MINs2SECs?
+     *
+     * @return
+     */
     private double computeLocalDelayPickFlow() {
         return length / velocity;
     }
