@@ -128,13 +128,12 @@ public class Pipe extends HydroGeoLine {
 
     public void buildPipe(final double elevationEndPoint, final double diameter, final double fillCoefficient, final double velocity) {
         setElevationEndPoint(elevationEndPoint);
-        this.diameter = diameter;
-        this.fillCoefficient = fillCoefficient;
-        this.velocity = velocity;
+        setDiameter(diameter);
+        setFillCoefficient(fillCoefficient);
 
         slope = GEOgeometry.computeSlope(startInspectionChamber.getX(), startInspectionChamber.getY(), startInspectionChamber.getElevation(),
                                          endInspectionChamber.getX(), endInspectionChamber.getY(), endInspectionChamber.getElevation());
-        localDelayPickFlow = computeLocalDelayPickFlow();
+        setVelocity(velocity);
     }
 
     public void setDischarge(final double discharge) {
@@ -151,6 +150,7 @@ public class Pipe extends HydroGeoLine {
 
     public void setVelocity(final double velocity) {
         this.velocity = velocity;
+        localDelayPickFlow = computeLocalDelayPickFlow();
     }
 
     public void setPickTime(final Double pickTime) {
