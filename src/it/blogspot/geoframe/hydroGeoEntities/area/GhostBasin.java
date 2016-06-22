@@ -45,7 +45,7 @@ public class GhostBasin extends HydroGeoArea {
 
     @Override
     public Double getArea() {
-        return null;
+        return 0.0;
     }
 
     @Override
